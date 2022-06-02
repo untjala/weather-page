@@ -1,9 +1,6 @@
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Global Variables
-var forecastContainer = document.getElementById('forecast')
-var searchCityEl = document.getElementById('searchCity');
-var searchEl = $('#searchBtn')
-var currentCityEl = $('.currentCity')
+
 var apiKey = '50776dd8bb98783725e832a860968c49'
 
 //Erases browser defaults for form
