@@ -11,14 +11,25 @@ var apiKey = '50776dd8bb98783725e832a860968c49'
 //Erases browser defaults for form
 var inputForm = function (event) {
     event.preventDefault();
-}
+    //Runs function to display data if city is entered, display error message otherwise
+    var searchedCity = inputNameEl.value;
+    if (searchedCity) {
+        getWeatherData(cityName);
+        selectedCityEl.textContent = '';
+        inputNameEl.value = '';
+    } else {
+        alert('Please enter a valid city name.')
+    }
+
+};
+
 
 //Search button click event 
-searchEl.click(function (event) {
-    console.log(searchCityEl.value)
-    var city = searchCityEl.value
+// searchBtnEl.addEventListener('click', function () {
+//     console.log(searchCityEl.value)
+
     // Api Fetch for geo location
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=50776dd8bb98783725e832a860968c49`)
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=1&appid=50776dd8bb98783725e832a860968c49`)
         .then(function (response) {
             return response.json();
         })
@@ -26,7 +37,7 @@ searchEl.click(function (event) {
             console.log(data[0].lat, data[0].lon);
             getWeatherData(data[0].lat, data[0].lon);
         });
-});
+// });
 
 
 //Api fetch for temp, wind speed, uv index, and humidity.
@@ -74,3 +85,5 @@ function getWeatherData(lat, lon) {
             }
         });
 }
+//Store searches to local history/recall when clicked
+//Event Listners 
