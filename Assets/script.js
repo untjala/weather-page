@@ -48,20 +48,6 @@ var buttonClickHandller = function (event) {
         console.log(searchedCityEl.value)
     })
 }
-// Api Fetch for geo location
-var getLocation = function (user) {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=1&appid=50776dd8bb98783725e832a860968c49`)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data[0].lat, data[0].lon);
-            getWeatherData(data[0].lat, data[0].lon);
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-};
 
 
 //OpenWeather API data intergration
@@ -82,7 +68,7 @@ var displayWeather = function (response) {
     var humidityEl = document.createElement('div');
     humidityEl.textContent = 'Humidity' + humidity + '%'
     selectedCityEl.append(humidityEl)
-
+    
     //Appends wind speed data to current city weather container
     var windSpeed = response.wind.speed;
     windSpeedEl.setAttribute('class', 'windDisplay');
@@ -96,12 +82,49 @@ var displayWeather = function (response) {
     uviEl.textContent = 'UV Index' + uvi
     selectedCityEl.append(uviEl)
 }
+var getCurrentWeather = function (searchedCity) {
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
+    var fetchApi =  apiUrl + cityName + '&appid=50776dd8bb98783725e832a860968c49'
+    
+    fetch(fetchApi) 
+        .then(function(response){
+            return response.json();
+        }) 
+        .then(function(response){
+            console.log(response)
+            lat = response.coord.lat
+            lon = response.cooord.lon
+            displayWeather(response)
 
+            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=50776dd8bb98783725e832a860968c49`)
+            .then(function(response){          
+                return response.json();
+            })
+            .then(data => {
+                console.log(data)
+                dailyCast(data)
+            })
+        })
+}
+// Api Fetch for geo location
+var getLocation = function (user) {
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=1&appid=50776dd8bb98783725e832a860968c49`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data[0].lat, data[0].lon);
+            getWeatherData(data[0].lat, data[0].lon);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+};
 //Api fetch for temp, wind speed, uv index, and humidity.
 // function getWeatherData(lat, lon) {
     // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=50776dd8bb98783725e832a860968c49`)
-//         .then(function (response) {
-//             return response.json();
+    //         .then(function (response) {
+        //             return response.json();
 //         })
 //         .then(function (data) {
 //             console.log(data.current.temp, data.current.wind_speed, data.current.uvi, data.current.humidity,);
