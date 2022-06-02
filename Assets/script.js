@@ -2,15 +2,26 @@
 var searchCity = $('#searchCity');
 var searchEl = $('#searchBtn')
 var currentCity = $('.currentCity')
+var apiKey = '50776dd8bb98783725e832a860968c49'
+
+//Erases browser defaults for form
+var inputForm = function (event) {
+    event.preventDefault();
+}
+//Search button click event 
+searchEl.click(function (event) {
+    console.log("hello")
+    fetch('http://api.openweathermap.org/geo/1.0/direct?q=Chicago&limit=1&appid=50776dd8bb98783725e832a860968c49')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data[0].lat, data[0].lon);
+            getWeatherData(data[0].lat, data[0].lon);
+        });
+});
+
 // Api Fetch for geo location
-fetch('http://api.openweathermap.org/geo/1.0/direct?q=Chicago&limit=1&appid=50776dd8bb98783725e832a860968c49')
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data[0].lat, data[0].lon);
-        getWeatherData(data[0].lat, data[0].lon);
-    });
 
 //Api fetch for temp, wind speed, uv index, and humidity.
 function getWeatherData(lat, lon) {
@@ -21,7 +32,7 @@ function getWeatherData(lat, lon) {
         .then(function (data) {
             console.log(data.current.temp, data.current.wind_speed, data.current.uvi, data.current.humidity,);
 
-            for (var i= 0; i < 5; i++) {
+            for (var i = 0; i < 5; i++) {
                 var day = data.daily[i]
                 console.log(day)
             }
@@ -42,3 +53,4 @@ function getWeatherData(lat, lon) {
             document.body.append(tempEl, windEl, uviEl, humidityEl)
         });
 }
+//Event listners 
