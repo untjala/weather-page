@@ -1,6 +1,5 @@
-// $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Global Variables
-
+$("#currentDay").text(moment().format("dddd, MMMM Do"));
 var searchCityEl = document.getElementById('searchCity');
 var searchEl = $('#searchBtn')
 var currentCityEl = $('.currentCity')
@@ -35,14 +34,15 @@ function getWeatherData(lat, lon) {
         .then(function (data) {
             console.log(data.current.temp, data.current.wind_speed, data.current.uvi, data.current.humidity,);
             //Tutor Assistance
-            console.log(data.daily[0].dt);
-            var time = data.daily[0].dt;
+            console.log(data.daily[i].dt);
+            var time = data.daily[i].dt;
             var date = new Date(time * 1000)
             //End of Tutor Assistance
             console.log(date);
-            for (var i = 0; i < 5; i++) {
-                var day = data.daily[i]
+            for (var i = 1; i < 6; i++) {
+                var day = data.daily[0]
                 console.log(day)
+            //Set and pull temp variables
             var temp = data.current.temp;
             var wind = data.current.wind_speed
             var uvi = data.current.uvi;
