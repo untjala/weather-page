@@ -1,6 +1,11 @@
-$("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Global Variables
-
+var currentTimeEl = document.getElementById('#currentDay');
+var searchBtnEl = document.getElementById('#searchBtn');
+var inputNameEl = document.getElementById('#searchCity');
+var searchHistoryEl = document.getElementById('#cityHistory');
+var selectedCityEl = document.getElementById('#currentCity');
+var fiveHeaderEl = document.getElementById('#fiveDayHeader');
+var fiveForecastEl = document.getElementById('#fiveDayForecast');
 var apiKey = '50776dd8bb98783725e832a860968c49'
 
 //Erases browser defaults for form

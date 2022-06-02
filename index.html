@@ -16,23 +16,22 @@
     <!-- Header -->
     <header class="row bg-light">
         <h1 class="col-12 text-center text-dark">Weather Dashboard</h1>
+        <p id="currentDay" class="col-12 text-center"></p>
     </header>
 
     <!-- Current City Data -->
     <div class="col-lg-9">
         <section class="currentCity">
-            <p id="currentDay" class="col-12 text-center"></p>
-        </section>
-    </div>
-
+            </section>
+        </div>
     <!-- City Search -->
     <main class="flex-row justify-space-between">
         <div class="col-lg-3 bg-dark text-light pb-3">
-            <aside class="searchContainer">
+            <aside class="searchContainer col-6">
                 <h3> Search for a City:</h3>
                 <input id="searchCity" type="text" placeholder="London">
                 <button id="searchBtn" class="btn btn-success" type="button">Search</button>
-                <div class="cityHistory"></div>
+                <div id="cityHistory"></div>
             </aside>
         </div>
     </main>
