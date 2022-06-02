@@ -1,5 +1,6 @@
+// $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Global Variables
-$("#currentDay").text(moment().format("dddd, MMMM Do"));
+var forecastContainer = document.getElementById('forecast')
 var searchCityEl = document.getElementById('searchCity');
 var searchEl = $('#searchBtn')
 var currentCityEl = $('.currentCity')
@@ -34,24 +35,26 @@ function getWeatherData(lat, lon) {
         .then(function (data) {
             console.log(data.current.temp, data.current.wind_speed, data.current.uvi, data.current.humidity,);
             //Tutor Assistance
-            console.log(data.daily[i].dt);
-            var time = data.daily[i].dt;
+            console.log(data.daily[0].dt);
+            var time = data.daily[0].dt;
             var date = new Date(time * 1000)
             //End of Tutor Assistance
             console.log(date);
-            for (var i = 1; i < 6; i++) {
-                var day = data.daily[0]
+            for (var i = 0; i < 5; i++) {
+                var day = data.daily[i]
                 console.log(day)
+                var dailyCard = document.createElement('div');
+                dailyCard.setAttribute('class', 'fiveCard')
+                forecastContainer.append(dailyCard)
             //Set and pull temp variables
             var temp = data.current.temp;
             var wind = data.current.wind_speed
             var uvi = data.current.uvi;
             var humidity = data.current.humidity
-            var tempEl = document.createElement('p');
+            var tempEl = document.createElement('div');
             var windEl = document.createElement('p');
             var uviEl = document.createElement('p');
             var humidityEl = document.createElement('p');
-
             temp.textContent = "Temp: " + temp;
             tempEl.textContent = "Temp: " + temp;
             windEl.textContent = "Wind: " + wind;
