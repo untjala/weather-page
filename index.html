@@ -17,37 +17,34 @@
     <header class="row bg-light">
         <h1 class="col-12 text-center text-dark">Weather Dashboard</h1>
     </header>
+
+    <!-- Current City Data -->
+    <div class="col-lg-9">
+        <section class="currentCity">
+            <p id="currentDay" class="col-12 text-center"></p>
+        </section>
     </div>
 
-        <!-- Current City Data -->
-        <div class="col-lg-9">
-            <section class="currentCity">
-                <p id="currentDay" class="col-12 text-center"></p>
-            </section>
-        </div>
-        <!-- City Search -->
-        <main class="flex-row justify-space-between">
-            <div class="col-lg-3 bg-dark text-light pb-3">
+    <!-- City Search -->
+    <main class="flex-row justify-space-between">
+        <div class="col-lg-3 bg-dark text-light pb-3">
+            <aside class="searchContainer">
                 <h3> Search for a City:</h3>
-                <aside class="search">
-                    <input id="searchCity" type="text" placeholder="Oslo">
-                    <button id="searchBtn" class="btn btn-success" type="button"></button>
-                </aside>
-                <section class="card" id="cityCard">
-                    <ul class="list-group" id="cities">
-                    </ul>
-                </section>
-            </div>
-        </main>
-        <!-- Five Day Forecast -->
-        <div class="container col-md-12">
-            <section id="forecast" class="row">
-            </section>
+                <input id="searchCity" type="text" placeholder="London">
+                <button id="searchBtn" class="btn btn-success" type="button">Search</button>
+                <div class="cityHistory"></div>
+            </aside>
         </div>
+    </main>
+    <!-- Five Day Forecast -->
+    <div class="container col-md-12">
+        <div id="fiveDayHeader"></div>
+        <div id="fiveDayForecast" class="row"></div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Assets/script.js"> </script>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="./Assets/script.js"> </script>
 
 </html>
