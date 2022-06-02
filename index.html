@@ -12,7 +12,7 @@
     <title>Weather Dashboard</title>
 </head>
 
-<body>
+<body class="flex-column">
     <!-- Header -->
     <header class="row bg-light">
         <h1 class="col-12 text-center text-dark">Weather Dashboard</h1>
@@ -26,6 +26,7 @@
             </section>
         </div>
         <!-- City Search -->
+        <main class="flex-row justify-space-between"> 
         <div class="col-lg-3 bg-dark text-light pb-3">
             <h3> Search for a City:</h3>
             <aside class="search">
@@ -37,6 +38,7 @@
                 </ul>
             </section>
         </div>
+        </main>
         <!-- Five Day Forecast -->
         <div class="container col-md-12">
             <h3 id="fiveDay">Five Day Outlook</h3>
