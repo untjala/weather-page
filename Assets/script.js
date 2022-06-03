@@ -1,5 +1,6 @@
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Global Variables
+var cities = [];
 var searchCityEl = document.getElementById('searchCity');
 var searchEl = $('#searchBtn')
 var currentCityEl = $('.currentCity')
@@ -27,7 +28,12 @@ searchEl.click(function (event) {
     .catch (function(error){
         alert("Please enter a city name.")
     });
+    saveSearch();
 });
+
+var saveSearch = function () {
+    localStorage.setItem("cities", JSON.stringify(cities));
+}
 // Api fetch for temp, wind speed, uv index, and humidity.
 function getWeatherData(lat, lon) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=50776dd8bb98783725e832a860968c49`)
