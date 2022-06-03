@@ -42,25 +42,25 @@ function getWeatherData(lat, lon) {
 
             console.log(date);
             for (var i = 1; i < 6; i++) {
-                var day = data.daily[i]
+                var day = data.daily[0]
                 console.log(day)
                 //Set and pull temp variables
-                var temp = data.daily.temp;
-                var wind = data.daily.wind_speed
-                var uvi = data.daily.uvi;
-                var humidity = data.daily.humidity
+                var temp = data.current.temp;
+                var wind = data.current.wind_speed
+                var uvi = data.current.uvi;
+                var humidity = data.current.humidity
 
                 //Append elements to cards
-                var dailyOne = document.createElement('div')
-                dailyOne.classList.add('card');
+                var dailyOne = document.createElement('div', 'class', 'row'); 
+                dailyOne.classList.add('card', 'mb-3','col-lg-6');
                 var tempEl = document.createElement('p');
-                tempEl.textContent = "Temp: " + temp;
+                tempEl.textContent = "Temp: " + temp + "° F"
                 dailyOne.appendChild(tempEl);
                 var windEl = document.createElement('p');
-                windEl.textContent = "Wind: " + wind;
+                windEl.textContent = "Wind: " + wind + " MPH";
                 dailyOne.append(windEl);
                 var humidityEl = document.createElement('p');
-                humidityEl.textContent = "Humidity: " + humidity;
+                humidityEl.textContent = "Humidity: " + humidity + "%"
                 dailyOne.append(humidityEl);
                 var uviEl = document.createElement ('p');
                 uviEl.textContent = "UV Index: " + uvi;
