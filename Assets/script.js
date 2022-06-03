@@ -106,20 +106,29 @@ var getCurrentWeather = function (searchedCity) {
             })
         })
 }
-// Api Fetch for geo location
-var getLocation = function (user) {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=1&appid=50776dd8bb98783725e832a860968c49`)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data[0].lat, data[0].lon);
-            getWeatherData(data[0].lat, data[0].lon);
-        })
-        .catch(function (error) {
-            alert(error);
-        });
-};
+//Five day forecast
+var dailyCast = function(data) {
+    fiveForecastEl.innerHTML = ""
+}
+//Adds a title to forcast cards
+var forecastTitle = document.createElement('h3')
+forecastTitle.textContent = "A look at the Next Five Days"
+forecastHeader.innerHTML = '';
+forecastHeader.append(forecastTitle)
+// // Api Fetch for geo location
+// var getLocation = function (user) {
+//     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=1&appid=50776dd8bb98783725e832a860968c49`)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data[0].lat, data[0].lon);
+//             getWeatherData(data[0].lat, data[0].lon);
+//         })
+//         .catch(function (error) {
+//             alert(error);
+//         });
+// };
 //Api fetch for temp, wind speed, uv index, and humidity.
 // function getWeatherData(lat, lon) {
     // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=50776dd8bb98783725e832a860968c49`)
