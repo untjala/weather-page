@@ -29,6 +29,7 @@
         <div class="col-lg-3 bg-dark text-light pb-3">
             <aside class="searchContainer col-6">
                 <h3> Search for a City:</h3>
+                <ul class="searchedCity"></ul>
                 <input id="searchCity" type="text" placeholder="London">
                 <button id="searchBtn" class="btn btn-success" type="button">Search</button>
                 <div id="cityHistory"></div>
@@ -37,7 +38,7 @@
     </main>
     <!-- Five Day Forecast -->
     <div class="container col-md-12">
-        <div id="fiveDayHeader"></div>
+        <div id="fiveDayHeader" class="flex row d-inline-flex"></div>
         <div id="fiveDayForecast"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

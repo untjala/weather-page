@@ -1,10 +1,12 @@
 $("#currentDay").text(moment().format("dddd, MMMM Do"));
 //Global Variables
 var cities = [];
+var index = 0;
 var searchCityEl = document.getElementById('searchCity');
 var searchEl = $('#searchBtn')
 var currentCityEl = $('.currentCity')
 var fiveDay = document.getElementById('fiveDayForecast')
+var holdSearches = document.getElementById('searchedCity')
 var apiKey = '50776dd8bb98783725e832a860968c49'
 
 
@@ -25,9 +27,9 @@ searchEl.click(function (event) {
             console.log(data[0].lat, data[0].lon);
             getWeatherData(data[0].lat, data[0].lon);
         })
-    .catch (function(error){
-        alert("Please enter a city name.")
-    });
+        .catch(function (error) {
+            alert("Please enter a city name.")
+        });
     saveSearch();
 });
 
@@ -41,27 +43,25 @@ function getWeatherData(lat, lon) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.daily.temp, data.daily.wind_speed, data.daily.uvi, data.daily.humidity,);
-
             //Tutor Assistance, logs the daily data in seconds, instead of milliseconds
             console.log(data.daily[0].dt);
             var time = data.daily[0].dt;
             var date = new Date(time * 1000)
             //End of Tutor Assistance
-
             console.log(date);
+
+            //Set and pull temp variables
             for (var i = 1; i < 6; i++) {
-                var day = data.daily[0]
                 console.log(day)
-                //Set and pull temp variables
-                var temp = data.current.temp;
-                var wind = data.current.wind_speed
-                var uvi = data.current.uvi;
-                var humidity = data.current.humidity
+                var day = data.daily[0]
+                var uvi = data.daily.uvi;
+                var temp = data.daily.temp;
+                var wind = data.daily.wind_speed;
+                var humidity = data.daily.humidity;
 
                 //Append elements to cards
-                var dailyOne = document.createElement('div', 'class', 'row'); 
-                dailyOne.classList.add('card', 'mb-3','col-lg-6');
+                var dailyOne = document.createElement('div', 'class', 'row');
+                dailyOne.classList.add('card', 'mb-3', 'col-lg-6');
                 var tempEl = document.createElement('p');
                 tempEl.textContent = "Temp: " + temp + "° F"
                 dailyOne.appendChild(tempEl);
@@ -71,16 +71,10 @@ function getWeatherData(lat, lon) {
                 var humidityEl = document.createElement('p');
                 humidityEl.textContent = "Humidity: " + humidity + "%"
                 dailyOne.append(humidityEl);
-                var uviEl = document.createElement ('p');
+                var uviEl = document.createElement('p');
                 uviEl.textContent = "UV Index: " + uvi;
                 dailyOne.append(uviEl);
                 fiveDay.appendChild(dailyOne);
-                //Displays weather content 
-
             }
         });
-
-    // Store searches to local history/recall when clicked
-    // Event Listners 
-    // searchBtnEl.onClick = formSubmitHandler;
 }
