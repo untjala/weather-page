@@ -61,10 +61,10 @@ function getWeatherData(lat, lon) {
                 windEl.textContent = "Wind: " + wind;
                 uviEl.textContent = "UV Index: " + uvi;
                 humidityEl.textContent = "Humidity: " + humidity;
-                // document.body.append(tempEl, windEl, uviEl, humidityEl)
+                document.body.append(tempEl, windEl, uviEl, humidityEl)
             }
         });
-        
+
     // Store searches to local history/recall when clicked
     // Event Listners 
     // searchBtnEl.onClick = formSubmitHandler;
