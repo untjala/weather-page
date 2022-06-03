@@ -27,9 +27,9 @@ searchEl.click(function (event) {
             console.log(data[0].lat, data[0].lon);
             getWeatherData(data[0].lat, data[0].lon);
         })
-        .catch(function (error) {
-            alert("Please enter a city name.")
-        });
+        // .catch(function (error) {
+        //     alert("Please enter a city name.")
+        // });
     saveSearch();
 });
 
