@@ -23,7 +23,10 @@ searchEl.click(function (event) {
         .then(function (data) {
             console.log(data[0].lat, data[0].lon);
             getWeatherData(data[0].lat, data[0].lon);
-        });
+        })
+    .catch (function(error){
+        alert("Please enter a city name.")
+    });
 });
 // Api fetch for temp, wind speed, uv index, and humidity.
 function getWeatherData(lat, lon) {
