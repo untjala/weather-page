@@ -3,6 +3,7 @@ $("#currentDay").text(moment().format("dddd, MMMM Do"));
 var searchCityEl = document.getElementById('searchCity');
 var searchEl = $('#searchBtn')
 var currentCityEl = $('.currentCity')
+var fiveDay = document.getElementById('fiveDayForecast')
 var apiKey = '50776dd8bb98783725e832a860968c49'
 
 
@@ -31,7 +32,7 @@ function getWeatherData(lat, lon) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.current.temp, data.current.wind_speed, data.current.uvi, data.current.humidity,);
+            console.log(data.daily.temp, data.daily.wind_speed, data.daily.uvi, data.daily.humidity,);
 
             //Tutor Assistance, logs the daily data in seconds, instead of milliseconds
             console.log(data.daily[0].dt);
@@ -40,28 +41,33 @@ function getWeatherData(lat, lon) {
             //End of Tutor Assistance
 
             console.log(date);
-            for (var i = 0; i < 5; i++) {
+            for (var i = 1; i < 6; i++) {
                 var day = data.daily[i]
                 console.log(day)
                 //Set and pull temp variables
-                var temp = data.current.temp;
-                var wind = data.current.wind_speed
-                var uvi = data.current.uvi;
-                var humidity = data.current.humidity
+                var temp = data.daily.temp;
+                var wind = data.daily.wind_speed
+                var uvi = data.daily.uvi;
+                var humidity = data.daily.humidity
 
-                //Create Elements from variables 
+                //Append elements to cards
+                var dailyOne = document.createElement('div')
+                dailyOne.classList.add('card');
                 var tempEl = document.createElement('p');
-                var windEl = document.createElement('p');
-                var uviEl = document.createElement('p');
-                var humidityEl = document.createElement('p');
-
-                //Displays weather content 
-                temp.textContent = "Temp: " + temp;
                 tempEl.textContent = "Temp: " + temp;
+                dailyOne.appendChild(tempEl);
+                var windEl = document.createElement('p');
                 windEl.textContent = "Wind: " + wind;
-                uviEl.textContent = "UV Index: " + uvi;
+                dailyOne.append(windEl);
+                var humidityEl = document.createElement('p');
                 humidityEl.textContent = "Humidity: " + humidity;
-                document.body.append(tempEl, windEl, uviEl, humidityEl)
+                dailyOne.append(humidityEl);
+                var uviEl = document.createElement ('p');
+                uviEl.textContent = "UV Index: " + uvi;
+                dailyOne.append(uviEl);
+                fiveDay.appendChild(dailyOne);
+                //Displays weather content 
+
             }
         });
 
